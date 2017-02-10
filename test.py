@@ -1,11 +1,11 @@
-from ascii_renderer import Component, ASCIIRenderer
+from RMap import RMap
 
 
 def main():
-    c = Component(10, 10, '123')
-    a = ASCIIRenderer([c, c, c])
-    a.prepare_map()
-    a.print_map()
+    r = RMap()
+    r.generate_map_frame()
+    r.generate_border('B')
+    r.render_map()
 
 
 if __name__ == '__main__':

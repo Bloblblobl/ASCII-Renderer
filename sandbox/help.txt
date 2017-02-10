@@ -1,0 +1,6 @@
+ASCII RENDERER SANDBOX
+Commands:
+  create rmap|<component name>,<bounds x>,<bounds y>,<emptychar (optional)>
+  render rmap|<component name>
+  get info|<component name>
+  help
