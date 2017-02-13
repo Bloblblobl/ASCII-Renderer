@@ -1,6 +1,3 @@
-from RLine import RLine
-
-
 class RMap(object):
 
     def __init__(self, lines=[], name='rmap', bounds=dict(x=10, y=10), emptychar='╳'):
@@ -16,9 +13,9 @@ class RMap(object):
         if bounds:
             self.bounds = bounds
         for y in range(self.bounds['y']):
-            self.lines.append(RLine('', self.bounds['x']))
+            self.lines.append('')
             for x in range(self.bounds['x']):
-                self.lines[y].contents += self.emptychar
+                self.lines[y] += self.emptychar
 
     def generate_border(self, borderchar, override=False):
         for y in range(self.bounds['y']):
@@ -27,9 +24,9 @@ class RMap(object):
             else:
                 brange = [0, self.bounds['x'] - 1]
             for x in brange:
-                if override or self.lines[y].contents[x] == self.emptychar:
-                    new_line = self.lines[y].contents[:x] + borderchar + self.lines[y].contents[x+1:]
-                    self.lines[y].contents = new_line
+                if override or self.lines[y][x] == self.emptychar:
+                    new_line = self.lines[y][:x] + borderchar + self.lines[y][x+1:]
+                    self.lines[y] = new_line
 
     def _merge_conflict(self, char1, char2):
         return char1 != self.emptychar and char2 != self.emptychar
@@ -39,10 +36,10 @@ class RMap(object):
 
     def render_map(self):
         for line in self.lines:
-            print(line.contents.replace(self.emptychar, ' '))
+            print(line.replace(self.emptychar, ' '))
 
     def generate_map_from_file(self, filepath):
         f = open(filepath)
         self.lines = []
         for line in f:
-            self.lines.append(RLine(line, self.bounds['x']))
+            self.lines.append(line)

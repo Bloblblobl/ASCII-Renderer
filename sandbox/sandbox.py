@@ -1,4 +1,4 @@
-from RMap import RMap
+from rmap import RMap
 
 
 def _assert_args(args, amax, amin=None, atypes=[]):
@@ -73,10 +73,15 @@ def _get_rmap_info(command_args, components):
 
 def _print_help_message(components):
     try:
-        help_file = open('sandbox/help.txt')
-        print(help_file.read())
+        help_text = open('sandbox/help.txt').read()
     except FileNotFoundError:
-        print('Help File not found')
+        try:
+            help_text = open('help.txt').read()
+        except FileNotFoundError:
+            help_text = 'Help File not found'
+    finally:
+        print(help_text)
+
     return components
 
 

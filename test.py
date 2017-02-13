@@ -1,4 +1,4 @@
-from RMap import RMap
+from rmap import RMap
 
 
 def main():
